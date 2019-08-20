@@ -7,16 +7,4 @@ RUN apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 lib
     libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
-# ARG APP_USER=meteor
-# ARG APP_USER_DIR=/home/${APP_USER}
-
-RUN useradd meteor
-
-RUN mkdir /home/meteor
-RUN chown meteor:meteor -R /home/meteor
-
-RUN su - meteor -c "curl https://install.meteor.com/ | sh"
-ENV PATH="/home/meteor/.meteor:${PATH}"
-
-USER meteor
-WORKDIR /home/meteor
+RUN curl https://install.meteor.com/?release=1.8.0.2 | sh
